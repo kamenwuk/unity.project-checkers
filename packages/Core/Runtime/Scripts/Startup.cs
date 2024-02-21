@@ -2,25 +2,28 @@ using Leopotam.EcsProto.Unity;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto;
 using UnityEngine;
+using Core.Board;
 
 namespace Core
 {
     public sealed class Startup : MonoBehaviour
     {
-        private AspectByWorld _aspectByWorld = null;
+        [SerializeField] private AspectByWorld _aspectByWorld = null;
+
         private ProtoSystems _systems = null;
         private ProtoWorld _world = null;
 
         private void Start()
         {
-            _aspectByWorld = new();
             _world = new(_aspectByWorld);
+            _systems = new(_world);
             _systems
                 .AddModule(new AutoInjectModule())
                 .AddModule(new UnityModule())
+                .AddSystem(new InitBoardToSystem())
+                .AddSystem(new DrawBoardToSystem())
                 .Init();
         }
-
         private void Update()
         {
             _systems.Run();
