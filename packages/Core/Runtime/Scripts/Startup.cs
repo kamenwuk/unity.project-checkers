@@ -3,9 +3,6 @@ using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto;
 using UnityEngine;
 using Core.Board;
-using Alchemy.Serialization;
-using System.Collections.Generic;
-using System;
 
 namespace Core
 {
@@ -23,8 +20,8 @@ namespace Core
             _systems
                 .AddModule(new AutoInjectModule())
                 .AddModule(new UnityModule())
-                .AddSystem(new InitBoardToSystem())
-                .AddSystem(new DrawBoardToSystem())
+                .AddSystem(new InitBoardInSystem())
+                .AddSystem(new DrawBoardInSystem())
                 .Init();
         }
         private void Update()

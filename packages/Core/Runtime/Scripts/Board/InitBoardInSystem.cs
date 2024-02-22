@@ -8,7 +8,7 @@ namespace Core.Board
     using Figure;
     using Cell;
 
-    public sealed class InitBoardToSystem : IProtoInitSystem
+    public sealed class InitBoardInSystem : IProtoInitSystem
     {
         [DI] private readonly AspectByBoard _board = null;
 

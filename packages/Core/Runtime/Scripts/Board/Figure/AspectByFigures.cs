@@ -1,10 +1,9 @@
+using System.Collections.Generic;
 using Leopotam.EcsProto.QoL;
+using Alchemy.Serialization;
+using Alchemy.Inspector;
 using Leopotam.EcsProto;
 using UnityEngine;
-using System.Collections.Generic;
-using Alchemy.Inspector;
-using System;
-using Alchemy.Serialization;
 
 namespace Core.Board.Figure
 {
@@ -18,7 +17,7 @@ namespace Core.Board.Figure
         public readonly ProtoPool<DataByFigureOnBoard> Pool = null;
         public readonly ProtoIt ItFigureLocatedOnCell = new(It.Inc<DataByFigureOnBoard>());
 
-        [AlchemySerializeField, NonSerialized, ShowInInspector] private Dictionary<DataByFigureOnBoard.Belongs, TemplateToFigure> _templates = new();
+        [AlchemySerializeField, System.NonSerialized, ShowInInspector] private Dictionary<DataByFigureOnBoard.Belongs, TemplateToFigure> _templates = new();
         [SerializeField] private Transform _storageLocation = null;
 
         public override void Init(ProtoWorld world)

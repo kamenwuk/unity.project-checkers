@@ -1,12 +1,12 @@
-using Core.Board.Cell;
-using Core.Board.Figure;
-using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
+using Leopotam.EcsProto;
+using Core.Board.Figure;
+using Core.Board.Cell;
 using UnityEngine;
 
 namespace Core.Board
 {
-    public sealed class DrawBoardToSystem : IProtoInitSystem
+    public sealed class DrawBoardInSystem : IProtoInitSystem
     {
         [DI] private readonly AspectByBoard _board = null;
 

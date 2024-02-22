@@ -1,10 +1,9 @@
+using System.Collections.Generic;
+using Alchemy.Serialization;
 using Leopotam.EcsProto.QoL;
+using Alchemy.Inspector;
 using Leopotam.EcsProto;
 using UnityEngine;
-using Alchemy.Serialization;
-using Alchemy.Inspector;
-using System.Collections.Generic;
-using System;
 
 namespace Core.Board.Cell
 {
@@ -18,7 +17,7 @@ namespace Core.Board.Cell
         public readonly ProtoIt ItCell = new(It.Inc<DataByCellOnBoard>());
         public readonly ProtoPool<DataByCellOnBoard> Pool = null;
 
-        [AlchemySerializeField, NonSerialized, ShowInInspector] private Dictionary<DataByCellOnBoard.Types, TemplateToCell> _templates = new();
+        [AlchemySerializeField, System.NonSerialized, ShowInInspector] private Dictionary<DataByCellOnBoard.Types, TemplateToCell> _templates = new();
         [SerializeField] private Transform _storageLocation = null;
         [SerializeField] private Vector2Int _quantity = Vector2Int.zero;
         
