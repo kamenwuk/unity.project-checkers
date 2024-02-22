@@ -1,25 +1,27 @@
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto;
 using UnityEngine;
+using Alchemy.Serialization;
+using Alchemy.Inspector;
+using System.Collections.Generic;
+using System;
 
 namespace Core.Board.Cell
 {
-    [System.Serializable]
-    public sealed class AspectByCells : ProtoAspectInject
+    [System.Serializable, AlchemySerialize]
+    public partial class AspectByCells : ProtoAspectInject
     {
         public Vector2Int Quantity => _quantity;
         public Transform StorageLocation => _storageLocation;
-        public Sprite SpriteForRegularCell => _spriteForRegularCell;
-        public Sprite SpriteCellUsedToMove => _spriteCellUsedToMove;
+        public IReadOnlyDictionary<DataByCellOnBoard.Types, TemplateToCell> Templates => _templates;
 
         public readonly ProtoIt ItCell = new(It.Inc<DataByCellOnBoard>());
         public readonly ProtoPool<DataByCellOnBoard> Pool = null;
 
+        [AlchemySerializeField, NonSerialized, ShowInInspector] private Dictionary<DataByCellOnBoard.Types, TemplateToCell> _templates = new();
         [SerializeField] private Transform _storageLocation = null;
         [SerializeField] private Vector2Int _quantity = Vector2Int.zero;
-        [SerializeField] private Sprite _spriteForRegularCell = null;
-        [SerializeField] private Sprite _spriteCellUsedToMove = null;
-
+        
         public override void Init(ProtoWorld world)
         {
             base.Init(world);

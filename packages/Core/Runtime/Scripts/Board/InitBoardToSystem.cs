@@ -26,7 +26,7 @@ namespace Core.Board
                     ProtoEntity entity = world.NewEntity();
                     ref DataByCellOnBoard cell = ref _board.Cells.Pool.Add(entity);
 
-                    cell = new(index, Mathf.Abs(Mathf.Abs(x) % 2 - Mathf.Abs(y)) % 2 == 0);
+                    cell = new(index, type: (DataByCellOnBoard.Types)Mathf.Abs(Mathf.Abs(x) % 2 - Mathf.Abs(y) % 2));
                     arrayCellByIndex.Add(index, entity);
                 }
             }

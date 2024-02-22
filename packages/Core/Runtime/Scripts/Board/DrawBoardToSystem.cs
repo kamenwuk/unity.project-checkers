@@ -9,23 +9,24 @@ namespace Core.Board
     public sealed class DrawBoardToSystem : IProtoInitSystem
     {
         [DI] private readonly AspectByBoard _board = null;
-        // TODO: Bring it to mind
+
         public void Init(IProtoSystems systems)
         {
             Bounds bounds = new();
-            Vector2 size = Vector2.zero;
             foreach(ProtoEntity entity in _board.Cells.ItCell)
             {
-                DataByCellOnBoard cell = _board.Cells.Pool.Get(entity);
+                ref DataByCellOnBoard cell = ref _board.Cells.Pool.Get(entity);
+                
                 SpriteRenderer renderer = new GameObject($"Cell {cell.Index}").AddComponent<SpriteRenderer>();
                 renderer.transform.parent = _board.Cells.StorageLocation;
                 renderer.drawMode = SpriteDrawMode.Tiled;
-                renderer.sprite = cell.UsedToMove ? _board.Cells.SpriteCellUsedToMove : _board.Cells.SpriteForRegularCell;
+                renderer.sprite = _board.Cells.Templates[cell.Type].View;
                 renderer.transform.localPosition = cell.Index * renderer.size;
+
+                cell = new(cell.Index, renderer, cell.Type);
                 
-                bounds.Encapsulate(renderer.gameObject.AddComponent<BoxCollider2D>().bounds);
-                
-                size = renderer.size;
+                if(cell.Type == DataByCellOnBoard.Types.UsedToMove)
+                    bounds.Encapsulate(renderer.gameObject.AddComponent<BoxCollider2D>().bounds);
             }
 
             foreach (ProtoEntity entity in _board.Figures.ItFigureLocatedOnCell)
@@ -36,8 +37,8 @@ namespace Core.Board
                 SpriteRenderer renderer = new GameObject($"Figure {figure.Belong} [{entity}]").AddComponent<SpriteRenderer>();
                 renderer.transform.parent = _board.Figures.StorageLocation;
                 renderer.drawMode = SpriteDrawMode.Tiled;
-                renderer.sprite = figure.Belong == DataByFigureOnBoard.Belongs.White ? _board.Figures.SpriteFigureBelongingToWhite : _board.Figures.SpriteFigureBelongingToBlack;
-                renderer.transform.localPosition = cell.Index * size;
+                renderer.sprite = _board.Figures.Templates[figure.Belong].View;
+                renderer.transform.localPosition = cell.Index * cell.Renderer.size;
                 renderer.sortingOrder = 1;
             }
 

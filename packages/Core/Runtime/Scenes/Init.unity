@@ -472,15 +472,28 @@ MonoBehaviour:
     _board:
       _camera: {fileID: 519420031}
       _cells:
+        _sizeForCell: 30
         _storageLocation: {fileID: 16346880}
         _quantity: {x: 8, y: 8}
-        _spriteForRegularCell: {fileID: 1992178588, guid: c5ad641afd66afb4db361cc96c48e1e8, type: 3}
-        _spriteCellUsedToMove: {fileID: 770922666, guid: c5ad641afd66afb4db361cc96c48e1e8, type: 3}
+        alchemySerializationData:
+          _templates:
+            isCreated: 1
+            data: "[\n    {\n        \"Key\": 0,\n        \"Value\": 0\n    },\n   
+              {\n        \"Key\": 1,\n        \"Value\": 1\n    }\n]"
+          unityObjectReferences:
+          - {fileID: 11400000, guid: dab329c01acc904419fd1a698585d078, type: 2}
+          - {fileID: 11400000, guid: 9bdbc2f0581bb7c45a57a80f73a9c65f, type: 2}
       _figures:
-        _spriteFigureBelongingToWhite: {fileID: 653894411, guid: c5ad641afd66afb4db361cc96c48e1e8, type: 3}
-        _spriteFigureBelongingToBlack: {fileID: 904172109, guid: c5ad641afd66afb4db361cc96c48e1e8, type: 3}
         _storageLocation: {fileID: 920345261}
-      _distanceFromScreenBorder: 1
+        alchemySerializationData:
+          _templates:
+            isCreated: 1
+            data: "[\n    {\n        \"Key\": 1,\n        \"Value\": 0\n    },\n   
+              {\n        \"Key\": -1,\n        \"Value\": 1\n    }\n]"
+          unityObjectReferences:
+          - {fileID: 11400000, guid: e517b6f2969215341ac2df4ce89af8d7, type: 2}
+          - {fileID: 11400000, guid: 7bdeacf93bf0a044faeed74bccbfbc68, type: 2}
+      _distanceFromScreenBorder: 0.35
 --- !u!114 &2059905107
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,9 @@ using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto;
 using UnityEngine;
 using Core.Board;
+using Alchemy.Serialization;
+using System.Collections.Generic;
+using System;
 
 namespace Core
 {
