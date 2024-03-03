@@ -1,0 +1,82 @@
+{
+    "name": "InputSchemeOnBoard",
+    "maps": [
+        {
+            "name": "Figure",
+            "id": "1c59e1f6-e10a-4286-8ad8-b37f6befdab0",
+            "actions": [
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "1f31d443-40d4-4e11-b851-4268bc14de06",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "308c516c-623c-417d-ab89-e51bcb4b6326",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8a006a88-cff2-4486-ae8d-21e294567b59",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0abcc406-007d-4981-814e-474f1a8474cc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Cell",
+            "id": "37aa1ea2-bfcf-41cf-a8e8-f5f471fad374",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "3a56efd9-c479-4b2c-86bc-2e5be7af7665",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "17641e85-d7de-476e-88ae-224470e0df25",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

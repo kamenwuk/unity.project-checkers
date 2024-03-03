@@ -16,30 +16,32 @@ namespace Core.Board
             foreach(ProtoEntity entity in _board.Cells.ItCell)
             {
                 ref DataByCellOnBoard cell = ref _board.Cells.Pool.Get(entity);
-                
-                SpriteRenderer renderer = new GameObject($"Cell {cell.Index}").AddComponent<SpriteRenderer>();
-                renderer.transform.parent = _board.Cells.StorageLocation;
-                renderer.drawMode = SpriteDrawMode.Tiled;
-                renderer.sprite = _board.Cells.Templates[cell.Type].View;
-                renderer.transform.localPosition = cell.Index * renderer.size;
-
-                cell = new(cell.Index, renderer, cell.Type);
+                cell = new(cell.Index, new GameObject($"Cell {cell.Index}").AddComponent<SpriteRenderer>(), cell.Type);
+                cell.View.transform.parent = _board.Cells.StorageLocation;
+                cell.View.sprite = _board.Cells.Templates[cell.Type].View;
+                cell.View.transform.localPosition = cell.Index * cell.View.size;
                 
                 if(cell.Type == DataByCellOnBoard.Types.UsedToMove)
-                    bounds.Encapsulate(renderer.gameObject.AddComponent<BoxCollider2D>().bounds);
+                {
+                    BoxCollider2D collider = cell.View.gameObject.AddComponent<BoxCollider2D>();
+                    
+                    ref DataObjectWithCollider objectWithCollider = ref _board.Cells.PoolCellsWithCollider.Add(entity);
+                    objectWithCollider = new(collider.GetInstanceID());
+                    
+                    bounds.Encapsulate(collider.bounds);
+                }
             }
 
             foreach (ProtoEntity entity in _board.Figures.ItFigureLocatedOnCell)
             {
-                DataByFigureOnBoard figure = _board.Figures.Pool.Get(entity);
                 DataByCellOnBoard cell = _board.Cells.Pool.Get(entity);
 
-                SpriteRenderer renderer = new GameObject($"Figure {figure.Belong} [{entity}]").AddComponent<SpriteRenderer>();
-                renderer.transform.parent = _board.Figures.StorageLocation;
-                renderer.drawMode = SpriteDrawMode.Tiled;
-                renderer.sprite = _board.Figures.Templates[figure.Belong].View;
-                renderer.transform.localPosition = cell.Index * cell.Renderer.size;
-                renderer.sortingOrder = 1;
+                DataByFigureOnBoard figure = _board.Figures.Pool.Get(entity);
+                figure = new(figure.Belong, new GameObject($"Figure {figure.Belong} [{entity}]").AddComponent<SpriteRenderer>(), figure.type);
+                figure.View.transform.parent = cell.View.transform;
+                figure.View.transform.localPosition = Vector3.zero;
+                figure.View.sprite = _board.Figures.Templates[figure.Belong].Views[figure.type];
+                figure.View.sortingOrder++;
             }
 
             bounds.Expand(_board.DistanceFromScreenBorder);

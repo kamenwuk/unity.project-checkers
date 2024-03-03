@@ -16,6 +16,7 @@ namespace Core.Board.Cell
 
         public readonly ProtoIt ItCell = new(It.Inc<DataByCellOnBoard>());
         public readonly ProtoPool<DataByCellOnBoard> Pool = null;
+        public readonly ProtoPool<DataObjectWithCollider> PoolCellsWithCollider;
 
         [AlchemySerializeField, System.NonSerialized, ShowInInspector] private Dictionary<DataByCellOnBoard.Types, TemplateToCell> _templates = new();
         [SerializeField] private Transform _storageLocation = null;

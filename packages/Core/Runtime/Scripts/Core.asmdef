@@ -8,7 +8,10 @@
         "UniTask",
         "Alchemy",
         "Alchemy.Editor",
-        "Alchemy.Tests.Runtime"
+        "Alchemy.Tests.Runtime",
+        "Unity.InputSystem",
+        "Unity.InputSystem.IntegrationTests",
+        "Unity.InputSystem.TestFramework"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

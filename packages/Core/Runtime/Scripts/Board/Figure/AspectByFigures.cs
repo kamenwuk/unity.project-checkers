@@ -13,10 +13,10 @@ namespace Core.Board.Figure
     {
         public Transform StorageLocation => _storageLocation;
         public IReadOnlyDictionary<DataByFigureOnBoard.Belongs, TemplateToFigure> Templates => _templates;
-        
+
+        //public readonly ISetMoveToFigure SetMoveToFigure = default;
         public readonly ProtoPool<DataByFigureOnBoard> Pool = null;
         public readonly ProtoIt ItFigureLocatedOnCell = new(It.Inc<DataByFigureOnBoard>());
-
         [AlchemySerializeField, System.NonSerialized, ShowInInspector] private Dictionary<DataByFigureOnBoard.Belongs, TemplateToFigure> _templates = new();
         [SerializeField] private Transform _storageLocation = null;
 

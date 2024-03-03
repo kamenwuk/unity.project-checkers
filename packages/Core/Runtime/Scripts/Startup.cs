@@ -3,6 +3,8 @@ using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto;
 using UnityEngine;
 using Core.Board;
+using Core.Board.Figure;
+using UnityEditor;
 
 namespace Core
 {
@@ -10,9 +12,14 @@ namespace Core
     {
         [SerializeField] private AspectByWorld _aspectByWorld = null;
 
+        private InputSchemeOnBoard _inputSchemeOnBoard = null;
         private ProtoSystems _systems = null;
         private ProtoWorld _world = null;
 
+        private void Awake()
+        {
+            _inputSchemeOnBoard = new();
+        }
         private void Start()
         {
             _world = new(_aspectByWorld);
@@ -22,6 +29,7 @@ namespace Core
                 .AddModule(new UnityModule())
                 .AddSystem(new InitBoardInSystem())
                 .AddSystem(new DrawBoardInSystem())
+                .AddSystem(new SelectFigureInSystem(_inputSchemeOnBoard))
                 .Init();
         }
         private void Update()

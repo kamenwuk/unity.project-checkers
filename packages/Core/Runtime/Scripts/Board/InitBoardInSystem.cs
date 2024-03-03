@@ -46,7 +46,7 @@ namespace Core.Board
                 int row = rowsToFigure[indexToRow];
                 for (int x = -_board.Cells.Quantity.x / 2; x < _board.Cells.Quantity.x / 2; x++)
                 {
-                    if (Mathf.Abs(Mathf.Abs(x) % 2 - Mathf.Abs(row)) % 2 != 0)
+                    if (Mathf.Abs(Mathf.Abs(x) % 2 - Mathf.Abs(row) % 2) == 0)
                         continue;
 
                     Vector2Int index = new(x, row);
